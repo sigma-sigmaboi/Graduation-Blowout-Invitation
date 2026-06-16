@@ -289,16 +289,13 @@ async function showMessage() {
 
   try {
 
-    await fetch(
-      "https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
-      {
-        method: "POST",
-        body: JSON.stringify({ name: name.trim() }),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      }
-    );
+	await fetch(
+	  "https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
+	  {
+	    method: "POST",
+	    body: JSON.stringify({ name: name.trim() })
+	  }
+	);
 
     alert("Attendance confirmed");
 
