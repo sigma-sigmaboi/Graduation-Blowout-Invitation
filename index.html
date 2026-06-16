@@ -256,13 +256,13 @@ and it would mean a lot to share this joyful milestone with you.
 </div>
 
 <div class="button">
-<button onclick="showMessage()">
+<button id="rsvpBtn" onclick="showMessage()">
 I will attend
 </button>
 </div>
 
 <div class="footer">
-Made by Jim Albrecht Cadion
+Made by Jim Albrecht
 </div>
 
 </div>
@@ -271,27 +271,50 @@ Made by Jim Albrecht Cadion
 
 async function showMessage() {
 
-try {
+  const btn = document.getElementById("rsvpBtn");
 
-await fetch(
-"https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
-{
-method:"POST"
-}
-);
+  if (btn && btn.disabled) return;
 
-alert(
-"Attendance confirmed 🎓"
-);
+  const name = prompt("Please enter your name to confirm attendance:");
 
-}
-catch{
+  if (!name || name.trim() === "") {
+    alert("Please enter your name to confirm.");
+    return;
+  }
 
-alert(
-"Unable to confirm."
-);
+  if (btn) {
+    btn.disabled = true;
+    btn.innerText = "Confirming...";
+  }
 
-}
+  try {
+
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
+      {
+        method: "POST",
+        body: JSON.stringify({ name: name.trim() }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+
+    alert("Attendance confirmed");
+
+    if (btn) {
+      btn.innerText = "Confirmed";
+    }
+
+  } catch (err) {
+
+    alert("Unable to confirm. Please try again.");
+
+    if (btn) {
+      btn.disabled = false;
+      btn.innerText = "Confirm Attendance";
+    }
+  }
 
 }
 
