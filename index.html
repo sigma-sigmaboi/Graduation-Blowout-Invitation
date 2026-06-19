@@ -212,7 +212,7 @@ and Achievements!
 <div class="image">
 <img src="jimyvene.jpg">
 </div>
-<div class="name"><strong>Jim Yvene S. Cadion</strong></div>
+<div class="name"><strong>Jim Yvene Cadion</strong></div>
 <div class="name"><em>Summa Cum Laude</em></div>
 <div class="name"><em>BS Physics</em></div>
 <div class="name"><em>UP Diliman</em></div>
@@ -222,7 +222,7 @@ and Achievements!
 <div class="image">
 <img src="jimalbrecht.jpg">
 </div>
-<div class="name"><strong>Jim Albrecht S. Cadion</strong></div>
+<div class="name"><strong>Jim Albrecht Cadion</strong></div>
 <div class="name"><em>High Honors</em></div>
 <div class="name"><em>PSHS-EVC</em></div>
 </div>
@@ -252,17 +252,20 @@ and it would mean a lot to share this joyful milestone with you.
 <p>📅 July 8, 2026</p>
 <p>🕒 5:00 PM</p>
 <p>📍 Rosvenil Hotel; P Burgos St., Downtown, Tacloban City</p>
+<a href="https://maps.app.goo.gl/aoxYTyVs6SHizfZr9">Click here to check on Google Maps</a>
 
 </div>
 
 <div class="button">
-<button id="rsvpBtn" onclick="showMessage()">
+<a href="confirmation.html">
+<button id="rsvpBtn">
 I will attend
 </button>
+</a>
 </div>
 
 <div class="footer">
-Made by Jim Albrecht
+Made by Jim Albrecht Cadion
 </div>
 
 </div>
@@ -289,13 +292,16 @@ async function showMessage() {
 
   try {
 
-	await fetch(
-	  "https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
-	  {
-	    method: "POST",
-	    body: JSON.stringify({ name: name.trim() })
-	  }
-	);
+    await fetch(
+      "https://script.google.com/macros/s/AKfycbweHjnsTLFLP6imgjE2V4r_Rvbg4VyExt_cmQrEaMOr8GSvdQGM7h8H3l7bNhxDYCd9/exec",
+      {
+        method: "POST",
+        body: JSON.stringify({ name: name.trim() }),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
 
     alert("Attendance confirmed");
 
@@ -309,7 +315,7 @@ async function showMessage() {
 
     if (btn) {
       btn.disabled = false;
-      btn.innerText = "I will attend";
+      btn.innerText = "Confirm Attendance";
     }
   }
 
